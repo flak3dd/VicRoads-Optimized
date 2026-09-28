@@ -1,0 +1,51 @@
+/* Safe area insets for iPhone X and later (notch, home indicator) */
+@supports (padding: env(safe-area-inset-bottom)) {
+  /* Bottom navigation bar safe area padding */
+  .fixed.bottom-0 {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Floating button safe area adjustment */
+  .fixed.bottom-\\[70px\\] {
+    bottom: calc(70px + env(safe-area-inset-bottom));
+  }
+
+  /* Sticky headers safe area padding for top notch */
+  .sticky.top-0 {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* Main content padding to avoid bottom safe area */
+  .pb-20,
+  .pb-32 {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 5rem);
+  }
+
+  /* Ensure full viewport height with safe areas */
+  .min-h-screen {
+    min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  }
+}
+
+/* Prevent pull-to-refresh on mobile to avoid conflicts with app gestures */
+html, body {
+  overscroll-behavior-y: contain;
+}
+
+/* Improve touch targets on mobile */
+button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Prevent text selection on UI elements for app-like feel */
+.fixed button,
+.sticky button {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Disable tap highlight color for app-like experience */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
